@@ -28,6 +28,8 @@ dependencies {
 	testImplementation group: 'com.h2database', name: 'h2'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.4'
+
 
 
 }
