@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static com.svj.utilities.AppUtils.convertObjectToJson;
 import static com.svj.utilities.DTOConverter.mapDTOToEntity;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -52,13 +53,9 @@ public class CustomerControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    ObjectMapper objectMapper;
-
     @BeforeEach
     public void setUp(){
-        objectMapper= new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        this.mockMvc= MockMvcBuilders
+        mockMvc= MockMvcBuilders
                 .standaloneSetup(customerController)
                 .build();
     }
@@ -71,7 +68,7 @@ public class CustomerControllerTest {
         CustomerEntity customer= new CustomerEntity(100, requestDTO.getFirstName(), requestDTO.getLastName(), requestDTO.getDateTimeOfPurchase());
         when(customerRepository.save(any())).thenReturn(customer);
         mockMvc.perform(MockMvcRequestBuilders.post(uri)
-                        .content(writeJson(requestDTO))
+                        .content(convertObjectToJson(requestDTO))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -109,7 +106,7 @@ public class CustomerControllerTest {
         when(customerRepository.save(any())).thenReturn(entity);
         mockMvc.perform(MockMvcRequestBuilders.put(uri+"/{id}", 100)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(writeJson(customer))
+                        .content(convertObjectToJson(customer))
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -126,10 +123,6 @@ public class CustomerControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.response").value("Customer with id 100 is deleted"));
-    }
-
-    private String writeJson(Object object) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(object);
     }
 
 }

@@ -22,6 +22,6 @@ public class CustomerRequestDTO{
     @NotBlank
     private String lastName;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss[.SSS][.SS][.S]")
-    @FutureOrPresent(message = "We do not support backtracked purchase entries from app. Please contact admin")
+//    @FutureOrPresent(message = "We do not support backtracked purchase entries from app. Please contact admin")
     private LocalDateTime dateTimeOfPurchase;
 }
