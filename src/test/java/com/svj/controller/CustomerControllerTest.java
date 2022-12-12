@@ -1,8 +1,6 @@
 package com.svj.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.svj.config.PaypalConfig;
 import com.svj.dto.CustomerRequestDTO;
 import com.svj.entity.CustomerEntity;
 import com.svj.repository.CustomerRepository;
@@ -46,6 +44,9 @@ public class CustomerControllerTest {
 
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private PaypalConfig paypalConfig;
 
     @MockBean
     private CustomerRepository customerRepository;

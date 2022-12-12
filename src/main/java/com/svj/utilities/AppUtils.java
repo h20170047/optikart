@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.svj.exception.CustomerException;
 
+import javax.annotation.PostConstruct;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
@@ -18,8 +19,7 @@ public class AppUtils {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter();
     public static ObjectMapper objectMapper= new ObjectMapper();
-    static {
-        System.out.println("Making sure that objectMapper is rightly registered with JavaTimeModule");
+    static  {
         objectMapper.registerModule(new JavaTimeModule());
     }
     public static String convertObjectToJson(Object object){

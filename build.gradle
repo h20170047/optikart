@@ -24,6 +24,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -32,6 +33,8 @@ dependencies {
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.4'
+	implementation group: 'com.paypal.sdk', name: 'rest-api-sdk', version: '1.14.0'
+
 
 
 
